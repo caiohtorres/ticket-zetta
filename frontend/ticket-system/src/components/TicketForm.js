@@ -115,7 +115,7 @@ const TicketForm = () => {
           >
             Cancelar
           </button>
-          <button type="submit">Cadastrar</button>
+          <button type="submit">Gerar</button>
         </div>
         {mensagem && (
           <div
