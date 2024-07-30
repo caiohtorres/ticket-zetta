@@ -2,17 +2,13 @@ const Ticket = require("../models/TicketData");
 
 module.exports = {
   async read(req, res) {
-    const { id } = req.params;
-
-    if (!id) {
-      return res.status(401).json({ error: "ID do ticket não preenchido!" });
+    try {
+      const tickets = await Ticket.find({});
+      return res.json(tickets);
+    } catch (error) {
+      console.error(error);
+      return res.status(500).json({ error: "Erro ao buscar tickets." });
     }
-    const ticket = await Ticket.findOne({ _id: id });
-
-    if (ticket) {
-      return res.json(ticket);
-    }
-    return res.status(401).json({ error: "Ticket não encontrado!" });
   },
 
   async create(req, res) {
@@ -44,15 +40,46 @@ module.exports = {
     }
   },
 
+  async update(req, res) {
+    const { id } = req.params;
+    const { nome, local, data, tipoPedido, descricao, status } = req.body;
+
+    try {
+      const ticket = await Ticket.findById(id);
+      if (!ticket) {
+        return res.status(404).json({ error: "Ticket não encontrado!" });
+      }
+
+      ticket.nome = nome !== undefined ? nome : ticket.nome;
+      ticket.local = local !== undefined ? local : ticket.local;
+      ticket.data = data !== undefined ? data : ticket.data;
+      ticket.tipoPedido =
+        tipoPedido !== undefined ? tipoPedido : ticket.tipoPedido;
+      ticket.descricao = descricao !== undefined ? descricao : ticket.descricao;
+      ticket.status = status !== undefined ? status : ticket.status;
+
+      await ticket.save();
+      return res.json(ticket);
+    } catch (error) {
+      console.error(error);
+      return res.status(500).json({ error: "Erro ao atualizar ticket." });
+    }
+  },
+
   async delete(req, res) {
     const { id } = req.params;
 
-    const ticketDeleted = await Ticket.findOneAndDelete({ _id: id });
+    try {
+      const ticketDeleted = await Ticket.findByIdAndDelete(id);
 
-    if (ticketDeleted) {
-      return res.json(ticketDeleted);
+      if (ticketDeleted) {
+        return res.json(ticketDeleted);
+      }
+
+      return res.status(404).json({ error: "Ticket não encontrado!" });
+    } catch (error) {
+      console.error(error);
+      return res.status(500).json({ error: "Erro ao deletar ticket." });
     }
-
-    return res.status(401).json({ error: "Ticket não encontrado!" });
   },
 };

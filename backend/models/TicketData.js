@@ -6,6 +6,7 @@ const TicketDataSchema = new mongoose.Schema({
   tipoPedido: String,
   descricao: String,
   data: String,
+  status: { type: String, default: "a-fazer" },
 });
 
 module.exports = mongoose.model("Ticket", TicketDataSchema);

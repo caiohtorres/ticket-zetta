@@ -11,6 +11,7 @@ body {
 }
 
 .sidebar {
+  height: auto;
   display: flex;
   background-color: #f9f9f9;
   justify-content: space-between;
@@ -20,25 +21,33 @@ body {
   color: white;
   text-align: center;
   padding: 20px;
+  margin-bottom: 100px;
 }
 
 .sidebar img {
-  width: 130px;
+  width: 180px;
   height: auto;
 }
 
 .sidebar ul {
+  display: flex;
   list-style: none;
   padding: 0;
+  align-items: center;
 }
 
 .sidebar ul li {
-  margin: 10px 0;
+  margin: 10px 10px;
+  font-size: 20px;
 }
 
 .sidebar ul li a {
   color: rgb(0, 0, 0);
   text-decoration: none;
+}
+
+.sidebar ul li a:hover {
+  color: #80549f;
 }
 
 .main-content {
@@ -76,9 +85,15 @@ form {
 }
 
 .form-group input,
-.form-group select,
 .form-group textarea {
   width: 95%;
+  padding: 15px;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+}
+
+.form-group select {
+  width: 100%;
   padding: 15px;
   border: 1px solid #ccc;
   border-radius: 4px;
@@ -197,4 +212,32 @@ button.cancelar:hover {
 
 .kanban-item .descricao {
   white-space: pre-wrap; /* Preserva os espaços em branco e quebra a linha automaticamente */
+}
+
+#ticketForm {
+}
+
+#App {
+  display: flex;
+  width: auto;
+  height: auto;
+}
+
+body {
+  display: flex;
+  justify-content: center;
+
+  height: 100vh;
+  width: auto;
+}
+#root {
+  width: 100%;
+}
+
+.botoesKanban {
+  display: flex;
+}
+
+button {
+  margin-right: 10px;
 }
