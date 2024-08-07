@@ -20,21 +20,21 @@ const KanbanBoard = () => {
     if (ticket) {
       let newStatus;
 
-      // Define a lógica para mover o ticket baseado na direção
+
       if (direction === "right") {
         newStatus =
           ticket.status === "a-fazer"
             ? "em-andamento"
             : ticket.status === "em-andamento"
             ? "concluidos"
-            : ticket.status; // Se já estiver em concluidos, não muda
+            : ticket.status;
       } else if (direction === "left") {
         newStatus =
           ticket.status === "concluidos"
             ? "em-andamento"
             : ticket.status === "em-andamento"
             ? "a-fazer"
-            : ticket.status; // Se já estiver em a-fazer, não muda
+            : ticket.status;
       }
 
       try {
@@ -66,12 +66,12 @@ const KanbanBoard = () => {
   };
 
   tickets.forEach((ticket) => {
-    const ticketStatus = ticket.status || "a-fazer"; // Adicione um valor padrão para o status
+    const ticketStatus = ticket.status || "a-fazer";
     if (!columns[ticketStatus]) {
       console.warn(
         `Status inválido para o ticket com ID ${ticket._id}: ${ticketStatus}`
       );
-      ticket.status = "a-fazer"; // Definindo status padrão para tickets com status inválido
+      ticket.status = "a-fazer";
     }
     columns[ticketStatus].push(
       <div key={ticket._id} className="kanban-item">

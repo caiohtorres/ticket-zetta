@@ -114,7 +114,6 @@ select option:hover {
   color: #fff !important;
 }
 
-/* Estilo para as opções do Select2 */
 .select2-container--classic
   .select2-results__option--highlighted[aria-selected] {
   background-color: #80549f;
@@ -211,10 +210,7 @@ button.cancelar:hover {
 }
 
 .kanban-item .descricao {
-  white-space: pre-wrap; /* Preserva os espaços em branco e quebra a linha automaticamente */
-}
-
-#ticketForm {
+  white-space: pre-wrap;
 }
 
 #App {

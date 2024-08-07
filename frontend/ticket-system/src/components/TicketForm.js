@@ -27,16 +27,15 @@ const TicketForm = () => {
       };
       try {
         const response = await Api.post("/ticket", ticket);
-        console.log(response); // Adicione este log para depuração
+        console.log(response);
         if (response.status >= 200 && response.status < 300) {
-          // Verifica se o status é de sucesso
           setMensagem("Ticket gerado com sucesso!");
           setForm({ nome: "", local: "", tipoPedido: "", descricao: "" });
         } else {
           setMensagem("Erro ao gerar o ticket.");
         }
       } catch (err) {
-        console.error(err); // Adicione este log para depuração
+        console.error(err);
         setMensagem("Erro ao gerar o ticket.");
       }
     }
